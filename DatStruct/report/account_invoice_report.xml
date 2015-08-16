@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+          <template id="accout_invoice_document" inherit_id="account.report_invoice_document">
+             <xpath expr="//table[@class='table table-condensed']/thead/tr/th[5]" position="replace"/>
+              <xpath expr="//table[@class='table table-condensed']/tbody[@class='invoice_tbody']/tr/td[5]" position="replace"/>
+              
+              
+              
+              <xpath expr="//div[@class='row']/div/table[@class='table table-condensed']/tr[1]" position="replace"/>
+              <xpath expr="//div[@class='row']/div/table[@class='table table-condensed']/tr[1]" position="replace"/>
+         </template>
+
+
+
+
+
+
+
+
+    </data>
+</openerp>

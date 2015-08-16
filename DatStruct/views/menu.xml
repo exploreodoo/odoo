@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="1">
+  
+
+<!--             <record id="crm.root_menu" model="ir.ui.menu">-->
+<!--                <field name="groups">base.group_no_one</field>-->
+<!--            </record>-->
+
+   </data>
+</openerp>
