@@ -45,7 +45,7 @@ class crem_lead(models.Model):
                                               'author_id': user.partner_id.id,
                                               'type':'notification'
                                              })
-               self.env['mail.nofification'].create({
+                self.env['mail.nofification'].create({
                
                                                 'starred':True,
                                                  'author_id': user.partner_id.id,
