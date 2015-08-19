@@ -41,9 +41,16 @@ class crem_lead(models.Model):
             print "data", today
             lead_ids = self.search([('user_id','=',user.id),('date_action','=', today)])
             for lead in lead_ids : 
-                self.env['mail.message'].create({ 'body':'<b>Next action to be performed on the oppturnity %s </b>' %(lead.name),
-                                              'author_id': 1,
+                msg_id = self.env['mail.message'].create({ 'body':'<b>Next action to be performed on the oppturnity %s </b>' %(lead.name),
+                                              'author_id': user.partner_id.id,
                                               'type':'notification'
                                              })
+               self.env['mail.nofification'].create({
+               
+                                                'starred':True,
+                                                 'author_id': user.partner_id.id,
+                                                 'message_id':msg_id
+                                                  
+               })                                          
         return True 
           
