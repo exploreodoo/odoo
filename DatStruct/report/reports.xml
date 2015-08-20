@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record id="view_order_product_graph_inherit" model="ir.ui.view">
+         <field name="name">sale.report.graph</field>
+         <field name="model">sale.report</field>
+         <field name="inherit_id" ref="sale.view_order_product_graph"/>
+         <field name="arch" type="xml">
+            <data>
+                 <xpath expr="//field[@name='date']" position="replace"/>
+            </data>
+         </field>
+    </record>
+
+    <record id="view_purchase_order_graph_inherit" model="ir.ui.view">
+         <field name="name">product.month.graph</field>
+         <field name="model">purchase.report</field>
+         <field name="inherit_id" ref="purchase.view_purchase_order_graph"/>
+         <field name="arch" type="xml">
+            <data>
+                 <xpath expr="//field[@name='date']" position="replace"/>
+            </data>
+         </field>
+    </record>
+    
+    
+    <record id="action_order_report_sales_own" model="ir.actions.act_window">
+        <field name="name">My Sales</field>
+        <field name="res_model">sale.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">graph</field>
+        <field name="search_view_id" ref="view_order_product_search"/>
+        <field name="view_id" ref="view_order_product_graph"/>
+        <field name="context">{'group_by_no_leaf':1,'group_by':[]}</field>
+    </record>
+    
+    
+    <record id="action_order_report_sales_product" model="ir.actions.act_window">
+        <field name="name">Sales By Product</field>
+        <field name="res_model">sale.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">graph</field>
+        <field name="search_view_id" ref="view_order_product_search"/>
+        <field name="view_id" ref="view_order_product_graph"/>
+        <field name="context">{'group_by_no_leaf':1,'group_by':[]}</field>
+    </record>
+    
+    <record id="action_order_report_sales_salesperson" model="ir.actions.act_window">
+        <field name="name">Sales By Salesperson</field>
+        <field name="res_model">sale.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">graph</field>
+        <field name="search_view_id" ref="view_order_product_search"/>
+        <field name="view_id" ref="view_order_product_graph"/>
+        <field name="context">{'group_by_no_leaf':1,'group_by':[]}</field>
+    </record>
+
+
+    <record id="action_purchase_order_report_per_supplier" model="ir.actions.act_window">
+        <field name="name">Purchase Per Supplier</field>
+        <field name="res_model">purchase.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="purchase.view_purchase_order_graph"></field>
+        <field name="context">{'group_by_no_leaf':1,'group_by':[]}</field>
+        <field name="help">Purchase Analysis allows you to easily check and analyse your company purchase history and performance. From this menu you can track your negotiation performance, the delivery performance of your suppliers, etc.</field>
+    </record>
+    
+    <record id="action_purchase_order_report_monthly" model="ir.actions.act_window">
+        <field name="name">Monthly Purchases</field>
+        <field name="res_model">purchase.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="purchase.view_purchase_order_graph"></field>
+        <field name="context">{'group_by_no_leaf':1,'group_by':[]}</field>
+        <field name="help">Purchase Analysis allows you to easily check and analyse your company purchase history and performance. From this menu you can track your negotiation performance, the delivery performance of your suppliers, etc.</field>
+    </record>
+
+    <record id="filter_isale_report_product_custom" model="ir.filters">
+        <field name="name">By Product Custom</field>
+        <field name="model_id">sale.report</field>
+        <field name="action_id" ref="sale.action_order_report_sales_product"/>
+        <field name="is_default">True</field>
+        <field name="user_id" eval="False"/>
+        <field name="context">{'group_by': ['date:month', 'product_id'], 'measures': ['nbr', 'product_uom_qty', 'delay', 'price_total']}</field>
+    </record>
+    
+    <record id="filter_isale_report_salesperson_custom" model="ir.filters">
+        <field name="name">By Salesperson Custom</field>
+        <field name="model_id">sale.report</field>
+        <field name="action_id" ref="sale.action_order_report_sales_salesperson"/>
+        <field name="is_default">True</field>
+        <field name="user_id" eval="False"/>
+        <field name="context">{'group_by': ['date:month', 'user_id'], 'measures': ['nbr', 'product_uom_qty', 'delay', 'price_total']}</field>
+    </record>
+    
+    
+     <record id="filter_isale_report_my_sales" model="ir.filters">
+        <field name="name">My Sales</field>
+        <field name="model_id">sale.report</field>
+        <field name="action_id" ref="sale.action_order_report_sales_own"/>
+        <field name="is_default">True</field>
+        <field name="user_id" eval="False"/>
+        <field name="domain">[('user_id','=',uid)]</field>
+        <field name="context">{'group_by': ['date:month', 'user_id'], 'measures': ['nbr', 'product_uom_qty', 'delay', 'price_total']}</field>
+    </record>
+    
+    
+    <record id="filter_purchase_order_per_suppliers" model="ir.filters">
+        <field name="name">Purchases Per Supplier</field>
+        <field name="model_id">purchase.report</field>
+        <field name="action_id" ref="action_purchase_order_report_per_supplier"/>
+        <field name="is_default">True</field>
+        <field name="user_id" eval="False"/>
+        <field name="domain">[('state','&lt;&gt;','draft'),('state','&lt;&gt;','cancel')]</field>
+        <field name="context">{'group_by': ['partner_id'], 'measures': ['nbr', 'quantity', 'delay_pass', 'price_total', 'price_standard']}</field>
+    </record>
+    
+    <record id="filter_purchase_order_monthly" model="ir.filters">
+        <field name="name">Monthly Purchases</field>
+        <field name="model_id">purchase.report</field>
+        <field name="action_id" ref="action_purchase_order_report_monthly"/>
+        <field name="is_default">True</field>
+        <field name="user_id" eval="False"/>
+        <field name="domain">[('state','&lt;&gt;','cancel')]</field>
+        <field name="context">{'group_by': ['category_id'], 'col_group_by': ['date:month'], 'measures': ['nbr', 'quantity', 'delay_pass', 'price_total', 'price_standard']}</field>
+    </record>
+    
+    <menuitem action="action_order_report_sales_own" id="menu_report_sales_product_mysales" parent="base.next_id_64" sequence="1"/>
+    <menuitem action="action_order_report_sales_product" id="menu_report_sales_product_all" parent="base.next_id_64" sequence="2"/>
+    <menuitem action="action_order_report_sales_salesperson" id="menu_report_sales_salesperson_all" parent="base.next_id_64" sequence="3"/>
+    <menuitem action="action_purchase_order_report_per_supplier" id="menu_action_purchase_order_report_per_supplier" parent="base.next_id_73" sequence="1"/>
+    <menuitem action="action_purchase_order_report_monthly" id="menu_action_purchase_order_report_monthly" parent="base.next_id_73" sequence="2"/>
+    
+</data>
+</openerp>    
