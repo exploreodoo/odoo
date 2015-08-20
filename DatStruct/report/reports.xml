@@ -80,7 +80,7 @@
     <record id="filter_isale_report_product_custom" model="ir.filters">
         <field name="name">By Product Custom</field>
         <field name="model_id">sale.report</field>
-        <field name="action_id" ref="sale.action_order_report_sales_product"/>
+        <field name="action_id" ref="action_order_report_sales_product"/>
         <field name="is_default">True</field>
         <field name="user_id" eval="False"/>
         <field name="context">{'group_by': ['date:month', 'product_id'], 'measures': ['nbr', 'product_uom_qty', 'delay', 'price_total']}</field>
@@ -89,7 +89,7 @@
     <record id="filter_isale_report_salesperson_custom" model="ir.filters">
         <field name="name">By Salesperson Custom</field>
         <field name="model_id">sale.report</field>
-        <field name="action_id" ref="sale.action_order_report_sales_salesperson"/>
+        <field name="action_id" ref="action_order_report_sales_salesperson"/>
         <field name="is_default">True</field>
         <field name="user_id" eval="False"/>
         <field name="context">{'group_by': ['date:month', 'user_id'], 'measures': ['nbr', 'product_uom_qty', 'delay', 'price_total']}</field>
@@ -99,7 +99,7 @@
      <record id="filter_isale_report_my_sales" model="ir.filters">
         <field name="name">My Sales</field>
         <field name="model_id">sale.report</field>
-        <field name="action_id" ref="sale.action_order_report_sales_own"/>
+        <field name="action_id" ref="action_order_report_sales_own"/>
         <field name="is_default">True</field>
         <field name="user_id" eval="False"/>
         <field name="domain">[('user_id','=',uid)]</field>
