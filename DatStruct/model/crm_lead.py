@@ -36,17 +36,14 @@ class crem_lead(models.Model):
     def update_to_do_list(self):
         today=date.today().strftime('%Y-%m-%d')
         user_ids = self.env['res.users'].search([])
-        print user_ids 
         for user in user_ids:
-            print "data", today
             lead_ids = self.search([('user_id','=',user.id),('date_action','=', today)])
             for lead in lead_ids : 
-                msg_id = self.env['mail.message'].create({'subject': "TO DO "
+                msg_id = self.env['mail.message'].create({ 'subject': "TO DO ",
                                               'body':'<b>Next action to be performed on the oppturnity %s </b>' %(lead.name),
                                               'author_id': user.partner_id.id,
                                               'type':'notification'
                                              })
-                print msg_id
                 self.env['mail.notification'].create({
                
                                                 'starred':True,
