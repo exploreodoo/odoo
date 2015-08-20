@@ -32,7 +32,7 @@ Manage sales quotations and orders
 This application allows you to manage your Day by Day processes easily    """,
     'author': 'DataStruct',
     'website': 'http://www.datstruct.com/',
-    'depends': ['sale','account','stock', 'purchase'],
+    'depends': ['sale','account','stock', 'crm','purchase'],
     'data': [
         'views/manufacture_procurement_view.xml', 
         'views/saleorder_view.xml',
