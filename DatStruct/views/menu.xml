@@ -1,8 +1,13 @@
 <?xml version="1.0"?>
 <openerp>
     <data noupdate="1">
-  
+<!--        <menuitem id="menu_portal_procurement" name="Manufacture Procurements" sequence="5" parent="stock.menu_stock_root" />-->
+<!--  -->
+<!--        <menuitem id="menu_portal_manufature_procurements" name="Procurements" sequence="10" action="manufacture_procurement_action" parent="stock.menu_stock_configuration" />-->
+        <menuitem action="purchase.purchase_rfq" id="menu_purchase_quote" parent="purchase.menu_procurement_management" sequence="1"/>
 
+        <menuitem action="manufacture_procurement_action" id="purchase.menu_purchase_rfq" parent="purchase.menu_procurement_management" sequence="0"/>
+ 
 <!--             <record id="crm.root_menu" model="ir.ui.menu">-->
 <!--                <field name="groups">base.group_no_one</field>-->
 <!--            </record>-->

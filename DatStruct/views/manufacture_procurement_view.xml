@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--
+        Procurement
+        -->
+
+
+        <record id="manufacture_procurement_tree_view" model="ir.ui.view">
+            <field name="name">procurement.order.tree</field>
+            <field name="model">manufacture.procurement</field>
+            <field name="arch" type="xml">
+                <tree string="Manufacture Procurement Lines" colors="gray:state == 'done';goldenrod:state == 'cancel';red:date_generated &lt; current_date;blue:date_generated == current_date" create="false">
+                    
+                    <field name="partner_id"/>
+                    <field name="product_id"/>
+                    <field name="product_qty"/>
+                    <field name="date_generated" widget="date"/>
+                    <field name="date_close"/>
+                    <field name="state" />
+                    <field name="active"/>
+                    
+                </tree>
+            </field>
+        </record>
+
+        <record id="manufacture_procurement_form_view" model="ir.ui.view">
+            <field name="name">procurement.order.form</field>
+            <field name="model">manufacture.procurement</field>
+            <field name="arch" type="xml">
+                <form string="Manufacture Procurement" version="7.0" create="false">
+                    <header>
+                        <button name="merge_procurment" type='object' states="draft" string="Generate Purchase Order"/>
+                        <button name="button_cancel" type='object' states="draft" string="Cancel Procurement"/>
+                        <field name="state" readonly="1" widget="statusbar" statusbar_visible="draft,done" />
+                    </header>
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="name" invisible="1"/>
+                            <field name="product_id"/>
+
+                            <field name="date_generated" attrs="{'readonly':[('state', '=', 'cancel')]}"/>
+
+                        </group>
+                        <group>
+                            <field name="company_id" groups="base.group_multi_company" widget="selection" invisible="1"/>
+                            <field name="product_qty"/>
+                            <field name="date_close" attrs="{'invisible':[('state', '=', 'cancel')]}"/>
+                             <field name="active" />
+                        </group>
+                    </group>
+                    <field name="description" placeholder="Description..." attrs="{'readonly':[('state', '=', 'cancel')]}"/>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_manufacture_procurement_filter" model="ir.ui.view">
+            <field name="name">procurement.order.select</field>
+            <field name="model">manufacture.procurement</field>
+            <field name="arch" type="xml">
+                <search string="Search Manufacture Procurement">
+                    <field name="date_generated"/>
+                    <field name="product_id" />
+                    <field name="state" />
+                    <group expand="0" string="Group By">
+                        <filter string="Product" icon="terp-accessories-archiver" domain="[]" context="{'group_by':'product_id'}"/>
+                        <filter string="Reason" icon="terp-gtk-jump-to-rtl" domain="[]" context="{'group_by':'name'}"/>
+                        <filter string="Generated Date" icon="terp-go-month" domain="[]" context="{'group_by':'date_generated'}"/>
+                        <filter string="Status" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="manufacture_procurement_action" model="ir.actions.act_window">
+            <field name="name">Procurement Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">manufacture.procurement</field>
+            <field name="view_type">form</field>
+            <field name="view_id" eval="False"/>
+            <field name="search_view_id" ref="view_manufacture_procurement_filter"/>
+            <field name="context">{'search_default_current':1}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a manufacture procurement order. 
+              </p><p>
+                A manufacture procurement order is used to record a need for a specific
+                product at a specific location.  Procurement orders are usually
+                created automatically from sales orders, pull logistic rules or
+                minimum stock rules.
+              </p><p>
+                When the manufacture procurement order is confirmed, it automatically
+                creates one or multiple manufacturing quotes depending on 
+                the number of manufacturers defined in the system.
+              </p>
+            </field>
+        </record>
+
+
+    </data>
+</openerp>
