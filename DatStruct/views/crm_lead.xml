@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+            <record id="view_crm_case_leads_filter_others" model="ir.ui.view">
+            <field name="name">CRM - Leads Search</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.view_crm_case_leads_filter"/>
+            <field name="arch" type="xml">
+            <field name="user_id" position='after'>
+                <field name = 'name'/>
+                <field name ='partner_id'/>
+                <field name ='campaign_id'/>
+                <field name ='company_id'/>
+                <field name ='country_id'/>>
+                <field name ='state_id'/>
+                <field name ='medium_id'/>
+                <field name ='source_id'/>
+                <field name ='title'/>
+                <field name ='city'/>
+                <field name ='contact_name'/>
+                <field name ='description'/>
+                <field name ='fax'/>
+                <field name ='mobile'/>
+                <field name ='partner_name'/>
+                <field name ='phone'/>
+                <field name ='planned_revenue'/>
+                <field name ='street'/>
+                <field name ='street2'/>
+                <field name ='zip'/>
+                <field name ='create_date'/>
+                <field name ='date_action_last'/>
+                <field name ='date_action_next'/>
+                <field name ='partner_name' />
+            </field>
+          </field>
+            
+        </record>    
+            
+        <record id="view_crm_case_leads_filter_oppturnity" model="ir.ui.view">
+        <field name="name">CRM - Leads Search</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+        <field name="arch" type="xml">
+        <field name="user_id" position='after'>
+            <field name = 'name'/>
+            <field name ='partner_id'/>
+            <field name ='campaign_id'/>
+            <field name ='company_id'/>
+            <field name ='country_id'/>>
+            <field name ='state_id'/>
+            <field name ='medium_id'/>
+            <field name ='source_id'/>
+            <field name ='title'/>
+            <field name ='city'/>
+            <field name ='contact_name'/>
+            <field name ='description'/>
+            <field name ='fax'/>
+            <field name ='mobile'/>
+            <field name ='partner_name'/>
+            <field name ='phone'/>
+            <field name ='planned_revenue'/>
+            <field name ='street'/>
+            <field name ='street2'/>
+            <field name ='zip'/>
+            <field name ='create_date'/>
+            <field name ='date_action_last'/>
+            <field name ='date_action_next'/>
+            <field name ='partner_name' />
+        </field>
+      </field>
+        
+    </record>    
+        
+    
+    
+    </data>
+</openerp>    
