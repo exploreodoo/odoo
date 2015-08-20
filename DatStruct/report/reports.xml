@@ -30,8 +30,8 @@
         <field name="res_model">sale.report</field>
         <field name="view_type">form</field>
         <field name="view_mode">graph</field>
-        <field name="search_view_id" ref="view_order_product_search"/>
-        <field name="view_id" ref="view_order_product_graph"/>
+        <field name="search_view_id" ref="sale.view_order_product_search"/>
+        <field name="view_id" ref="sale.view_order_product_graph"/>
         <field name="context">{'group_by_no_leaf':1,'group_by':[]}</field>
     </record>
     
@@ -41,8 +41,8 @@
         <field name="res_model">sale.report</field>
         <field name="view_type">form</field>
         <field name="view_mode">graph</field>
-        <field name="search_view_id" ref="view_order_product_search"/>
-        <field name="view_id" ref="view_order_product_graph"/>
+        <field name="search_view_id" ref="sale.view_order_product_search"/>
+        <field name="view_id" ref="sale.view_order_product_graph"/>
         <field name="context">{'group_by_no_leaf':1,'group_by':[]}</field>
     </record>
     
@@ -51,8 +51,8 @@
         <field name="res_model">sale.report</field>
         <field name="view_type">form</field>
         <field name="view_mode">graph</field>
-        <field name="search_view_id" ref="view_order_product_search"/>
-        <field name="view_id" ref="view_order_product_graph"/>
+        <field name="search_view_id" ref="sale.view_order_product_search"/>
+        <field name="view_id" ref="sale.view_order_product_graph"/>
         <field name="context">{'group_by_no_leaf':1,'group_by':[]}</field>
     </record>
 
