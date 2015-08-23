@@ -60,6 +60,7 @@ class manufacture_procurement(osv.osv):
     }
 
     _defaults = {
+        'active':True, 
         'state': 'draft',
         'date_generated': fields.date.context_today,
         'company_id': lambda self, cr, uid, c: self.pool.get('res.company')._company_default_get(cr, uid, 'procurement.order', context=c)
